@@ -10,3 +10,13 @@ services:
 volumes:
   nginx_data:
     driver: local
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: moodle_db
+      MYSQL_USER: moodle_user
+      MYSQL_PASSWORD: moodle
+    ports:
+      - '3306:3306'
