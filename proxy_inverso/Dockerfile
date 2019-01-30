@@ -3,9 +3,7 @@ FROM debian
 RUN apt -y update; /
 apt -y install varnish
 
-#Copia de los ficheros de configuracion
-COPY /conf/varnish /etc/default/varnish
-COPY /conf/varnish.service /lib/systemd/system/varnish.service
+#Copia del fichero de configuracion
 COPY /conf/default.vcl /etc/varnish/default.vcl
 
 #Puerto de escucha de varnish
