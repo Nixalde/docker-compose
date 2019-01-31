@@ -29,3 +29,4 @@ services:
       MYSQL_PASSWORD: moodle
     ports:
       - '3306:3306'
+
