@@ -1,39 +1,44 @@
 version: '3'
+
 services:
+
   nginx:
     image: nginx
     volumes:
     - ./servidor_web/conf/site.conf:/etc/nginx/conf.d/site.conf
     ports:
-      - "8080:80"
+      - 8080:80
     environment:
-      - NGINX_HOST=www.grupo2docker.org
-      - NGINX_PORT=80
+      - NGINX_HOST: ${NGINX_HOST}
+      - NGINX_PORT: ${NGINX_PORT}
     command: /bin/bash -c "envsubst &lt; /etc/nginx/conf.d/site.conf &gt; /etc/nginx/conf.d/default.conf &amp;&amp; exec nginx -g 'daemon off;'"
+
   php:
     build:
         contest: ./servidor_aplicaciones
     ports:
-      - "9000:9000"
+      - 9000:9000
     volumes:
       - ./servidor_apliaciones/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
     enviroment:
-      MYSQL_USER: moodle_user
-      MYSQL_PASSWORD: moodle
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
   varnish:
     image: secoresearch/varnish
     environment:
-      VARNISH_BACKEND_IP:172.22.201.97
-      VARNISH_BACKEND_PORT: 8080
+      VARNISH_BACKEND_IP: ${VARNISH_BACKEND_IP}
+      VARNISH_BACKEND_PORT: ${VARNISH_BACKEND_PORT}
     ports:
-      - "80:80"
+      - 80:80
+
   db:
-    image: 'mariadb'
+    image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: moodle_db
-      MYSQL_USER: moodle_user
-      MYSQL_PASSWORD: moodle
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - '3306:3306'
+      - 3306:3306
 
