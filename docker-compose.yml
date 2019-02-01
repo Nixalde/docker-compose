@@ -55,7 +55,7 @@ services:
 
 services:
   loadbalancer:
-    image: sirrtea/haproxy:alpine
+    image: debian/haproxy
     container_name: balancer
     hostname: balancer
     network_mode: host
