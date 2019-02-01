@@ -1,4 +1,4 @@
-#Fichero conficguracion para nginx
+#Fichero configuracion para nginx
 
 {{$app := env "APP_NAME"}}
 
