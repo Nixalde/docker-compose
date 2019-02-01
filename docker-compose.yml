@@ -53,3 +53,22 @@ services:
     ports:
       - 3306:3306
 
+services:
+  balanceador:
+    image: debian/haproxy
+    container_name: balancer
+    hostname: balancer
+    network_mode: host
+    volumes:
+      - /etc/haproxy
+  templater:
+    image: templater
+    container_name: templater
+    hostname: templater
+    network_mode: host
+    volumes:
+      - ./haproxy.ctmpl:/tmp/haproxy.ctmpl:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    volumes_from:
+      - loadbalancer
+    command: consul-template -template "/tmp/haproxy.ctmpl:/etc/haproxy/haproxy.cfg:docker restart balancer"
