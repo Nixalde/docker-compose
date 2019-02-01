@@ -54,10 +54,10 @@ services:
       - 3306:3306
 
 services:
-  balanceador:
+  environment:
     image: debian/haproxy
-    container_name: balancer
-    hostname: balancer
+    container_name: 
+    hostname: 
     network_mode: host
     volumes:
       - /etc/haproxy
