@@ -1,13 +1,10 @@
-# Imagen que descargamos con "docker pull mariadb:latest"
-FROM mariadb:latest
-# Actualizamos el sistema
-RUN apt-get update && \
-    apt-get -y upgrade
+# Descargamos la imágen
+#FROM mariadb:latest
 # Establecemos variables de entorno
-ENV MYSQL_ROOT_PASSWORD root
-ENV MYSQL_DATABASE moodle_db
+#ENV MYSQL_ROOT_PASSWORD root
+#ENV MYSQL_DATABASE moodle_db
 
-#Activamso la caché
+#Activamos la caché
 
 COPY /conf/cache.sql /tmp/cache.sql
 
