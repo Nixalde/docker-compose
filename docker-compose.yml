@@ -98,9 +98,8 @@ services:
 
 ### Servido Cache de base de datos ( MemCache )
   memcache:
-     image:
-     ports:
-     volumes:
+     build:
+         contest: ./cache_bd
      depends_on:
        - db
 ###
