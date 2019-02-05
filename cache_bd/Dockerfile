@@ -1,11 +1,25 @@
-# Descargamos la imágen
-#FROM mariadb:latest
-# Establecemos variables de entorno
-#ENV MYSQL_ROOT_PASSWORD root
-#ENV MYSQL_DATABASE moodle_db
+#MENCACHED
+#
+# Establece la imagen de base a utilizar para Ubuntu
+FROM ubuntu
 
-#Activamos la caché
+# Establece el autor (maintainer) del archivo (tu nombre - el autor del archivo)
+MAINTAINER adrian
 
-COPY /conf/cache.sql /tmp/cache.sql
+# Actualización de la lista de fuentes del repositorio de aplicaciones por defecto
+RUN apt-get update
 
-RUN "mysql -u root --password="root" moodle_db < /tmp/cache.sql"
+# Instalar Memcached
+RUN apt-get install -y memcached
+
+# Puerto para exponer (por defecto: 11211)
+EXPOSE 11211
+
+# Comando Memcached por defecto con algunos argumentos
+CMD ["-u", "root", "-m", "128"]
+
+# Establece el usuario para ejecutar el demonio Memcached
+USER daemon
+
+# Establece el punto de entrada para los binarios de Memcached
+ENTRYPOINT memcached
