@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  web:
+    image: nginx:latest
+    ports:
+        - "8080:80"
+    volumes:
+        - ./drupal:/code:ro
+        - ./nginx.conf:/etc/nginx/conf.d/site.conf
+    links:
+        - php
+
+  php:
+#    image: php:7-fpm
+    image: drupal:7-fpm
+    volumes:
+        - ./drupal:/code:rw
+    links:
+        - db
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: joomla_db
+      MYSQL_USER: joomla_user
+      MYSQL_PASSWORD: joomla
+#    ports:
+#      - 3306:3306
