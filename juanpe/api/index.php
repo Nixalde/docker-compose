@@ -1,1 +1,5 @@
-echo 'Welcome!';
+<?php
+
+phpinfo();
+
+?>
