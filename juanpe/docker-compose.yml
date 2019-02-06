@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  web:
+  nginx:
     image: nginx:1.13.8
 #    image: nginx:latest
     ports:
@@ -40,7 +40,7 @@ services:
 #      # Memcached memory limit in megabytes
 #  - MEMCACHED_MEMORY_LIMIT=128
 
-  db:
+  mysql:
 #    image: mariadb:latest
     image: mysql:5.7
     environment:
@@ -48,6 +48,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+        - php
 #    volumes:
 #        - ./database:/var/lib/mysql
     ports:
