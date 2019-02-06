@@ -20,6 +20,12 @@ services:
     links:
         - db
 
+#  memcached:
+#    image: memcached:latest
+#    environment:
+#      # Memcached memory limit in megabytes
+#  - MEMCACHED_MEMORY_LIMIT=128
+
   db:
     image: mariadb:latest
     environment:
