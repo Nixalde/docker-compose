@@ -98,13 +98,11 @@ services:
 
 ### Servido Cache de base de datos ( MemCache )
   memcache:
-     build:
-         contest: ./cache_bd
+     image: memcache
      ports:
      - 11211:11211
      enviroment:
        MYSQL_USER: ${MYSQL_USER}
-       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
      depends_on:
        - db
 ###
