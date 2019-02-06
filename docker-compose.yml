@@ -102,7 +102,7 @@ services:
      ports:
      - 11211:11211
      enviroment:
-       MYSQL_USER: ${MYSQL_USER}
+       MEMCACHE_USER: ${MYSQL_USER}
      depends_on:
        - db
 ###
