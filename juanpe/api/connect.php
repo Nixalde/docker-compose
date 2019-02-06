@@ -5,9 +5,10 @@ $pass = getenv('MYSQL_PASSWORD');
 
 $conn = mysqli_connect($host, $user, $pass);
 if (!$conn) {
+    echo 'ERROR!'.PHP_EOL;
     exit('Connection failed: '.mysqli_connect_error().PHP_EOL);
 } else {
-	echo 'Successful database connection!'.PHP_EOL;
+	echo 'Funciona conexion basedato!'.PHP_EOL;
 }
 
 ?>
