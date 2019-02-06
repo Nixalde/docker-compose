@@ -3,11 +3,14 @@ version: '3'
 services:
 
   web:
-    image: nginx:latest
-    ports:
-        - "8080:80"
+    image: nginx:1.13.8
+#    image: nginx:latest
+#    ports:
+	- 80:80
+#        - "8080:80"
     volumes:
-        - ./drupal:/var/www/html
+#        - ./drupal:/var/www/html
+	- ./:/srv/www/api
         - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
 #    links:
 #        - php
@@ -20,8 +23,9 @@ services:
     build:
       context: ./docker/php
     volumes:
-        - ./drupal:/var/www/html
-        - ../docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+#        - ./drupal:/var/www/html
+	- ./:/srv/www/api
+        - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
 #    links:
 #        - db
     ports:
@@ -37,13 +41,14 @@ services:
 #  - MEMCACHED_MEMORY_LIMIT=128
 
   db:
-    image: mariadb:latest
+#    image: mariadb:latest
+    image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-        - ./database:/var/lib/mysql
+#    volumes:
+#        - ./database:/var/lib/mysql
     ports:
       - 3306:3306
