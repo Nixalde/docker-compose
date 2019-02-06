@@ -4,7 +4,7 @@
 FROM ubuntu
 
 # Establece el autor (maintainer) del archivo (tu nombre - el autor del archivo)
-MAINTAINER adrian
+MAINTAINER moodle_user
 
 # Actualización de la lista de fuentes del repositorio de aplicaciones por defecto
 RUN apt-get update
@@ -19,7 +19,7 @@ EXPOSE 11211
 CMD ["-u", "root", "-m", "128"]
 
 # Establece el usuario para ejecutar el demonio Memcached
-USER daemon
+USER moodle_user
 
 # Establece el punto de entrada para los binarios de Memcached
 ENTRYPOINT memcached
