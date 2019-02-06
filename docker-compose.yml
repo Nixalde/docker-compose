@@ -100,6 +100,9 @@ services:
   memcache:
      build:
          contest: ./cache_bd
+     enviroment:
+       MYSQL_USER: ${MYSQL_USER}
+       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
      depends_on:
        - db
 ###
