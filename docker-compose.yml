@@ -100,6 +100,8 @@ services:
   memcache:
      build:
          contest: ./cache_bd
+     ports:
+     - 11211:11211
      enviroment:
        MYSQL_USER: ${MYSQL_USER}
        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
