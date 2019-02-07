@@ -8,7 +8,7 @@ if (!$conn) {
     echo 'ERROR!'.PHP_EOL;
     exit('Connection failed: '.mysqli_connect_error().PHP_EOL);
 } else {
-	echo 'Funciona conexion basedato!'.PHP_EOL;
+	echo 'Funciona la conexion a la base de datos!'.PHP_EOL;
 }
 
 ?>
