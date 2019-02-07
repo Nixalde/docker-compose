@@ -83,8 +83,9 @@ services:
      image: memcache
      ports:
      - 11211:11211
-     env_file:
-       - ".env"
+    environment:
+      - MYSQL_USER=joomla_user
+      - MYSQL_PASSWORD=jomla
      depends_on:
        - db
 
